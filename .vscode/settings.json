@@ -1,0 +1,31 @@
+{
+  // Where LaTeX Workshop looks for the compiled PDF and aux files.
+  // Matches $out_dir in .latexmkrc.
+  "latex-workshop.latex.outDir": "%DIR%/output",
+
+  // Use an absolute path to latexmk so the build works even when VSCode
+  // is launched from the Dock/Finder (which does not inherit the shell
+  // PATH that includes /Library/TeX/texbin). -shell-escape, -synctex, and
+  // the output directory are already handled by .latexmkrc.
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "/Library/TeX/texbin/latexmk",
+      "args": [
+        "-pdf",
+        "%DOC%"
+      ],
+      "env": {}
+    }
+  ],
+
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk",
+      "tools": ["latexmk"]
+    }
+  ],
+
+  // Open the built-in PDF viewer in a VSCode tab.
+  "latex-workshop.view.pdf.viewer": "tab"
+}

@@ -92,8 +92,9 @@ _minted*/
 \#*\#
 .\#*
 
-# VS Code / LaTeX Workshop
-.vscode/
+# VS Code / LaTeX Workshop (track shared build settings, ignore the rest)
+.vscode/*
+!.vscode/settings.json
 
 # TeXShop / TeXstudio / Overleaf-local
 *.synctex.gz
