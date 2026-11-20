@@ -1,0 +1,101 @@
+## LaTeX build artifacts ---------------------------------------------------
+
+# latexmk build directory (see .latexmkrc)
+output/*
+!output/.gitkeep
+
+# Core auxiliary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# Intermediate
+*.dvi
+*.xdv
+*-converted-to.*
+
+# Bibliography
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+*.brf
+
+# BibTeX8 / biber
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# Index
+*.idx
+*.ilg
+*.ind
+*.ist
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.acn
+*.acr
+*.alg
+
+# Beamer / navigation
+*.nav
+*.pre
+*.snm
+*.vrb
+
+# todonotes, changes, etc.
+*.soc
+
+# algorithms
+*.alg
+*.loa
+
+# listings / minted
+*.pyg
+_minted*/
+
+# TikZ externalization
+*.auxlock
+*.figlist
+*.makefile
+
+# hyperref
+*.brf
+
+## Editor / OS -------------------------------------------------------------
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Vim / Emacs
+*.swp
+*~
+\#*\#
+.\#*
+
+# VS Code / LaTeX Workshop
+.vscode/
+
+# TeXShop / TeXstudio / Overleaf-local
+*.synctex.gz
+*.texshop*
+*.bak
