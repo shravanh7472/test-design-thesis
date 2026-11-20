@@ -1,0 +1,120 @@
+\usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, total={6in, 8.5in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{framed}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{varioref}
+\usepackage{tikz}
+\usepackage[shortlabels]{enumitem}
+\usepackage{xcolor}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{cancel}
+\usepackage{mathdots}
+\usepackage{dsfont}
+\usepackage{cancel}
+\usepackage{minted}
+\setminted{fontsize=\footnotesize}
+\usepackage{bbm}
+\usepackage{setspace}
+
+\newcommand\ItemImage[2][]{%
+    \hfill\raisebox{\dimexpr-\height+\baselineskip}{\includegraphics[#1]{#2}}\hfill~}
+\title{Working Draft: Optimal Test Design}
+\author{ECON 29800 Thesis}
+\date{October 2026}
+
+\newcommand{\x}{x^*}
+\newcommand{\y}{y^*}
+\newcommand{\W}{W^*}
+\newcommand{\M}{M^*}
+\renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
+\newcommand{\bgt}{p_xx+p_yy=m}
+\newcommand{\bg}{p_xx+p_yy}
+\newcommand{\mbg}{m-p_xx-p_yy}
+\newcommand{\xom}{x^M_1}
+\newcommand{\xtm}{x^M_2}
+\newcommand{\xrm}{x^M_3}
+\newcommand{\xoh}{x^H_1}
+\newcommand{\xth}{x^H_2}
+\newcommand{\p}{\rho}
+\newcommand{\U}{\overline{U}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\e}{\varepsilon}
+\renewcommand{\l}{\lambda}
+\newcommand{\bm}{b_M}
+\newcommand{\cm}{c_M}
+\newcommand{\mx}{\text{max}_{x,y}}
+\newcommand{\mn}{\text{min}_{x,y}}
+\newcommand{\del}{\partial}
+\newcommand{\pv}{\mathbf{p}}
+\newcommand{\xv}{\mathbf{x}}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\s}{\sigma}
+\newcommand{\wv}{\boldsymbol{\omega}}
+\newcommand{\w}{\omega}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\xo}{x_1^*}
+\newcommand{\xt}{x_2^*}
+\newcommand{\dotp}{\boldsymbol{\cdot}}
+\newcommand{\ev}{\mathbf{e}}
+\newcommand{\zv}{\mathbf{z}}
+\newcommand{\dv}{\mathbf{d}}
+\newcommand{\yv}{\mathbf{y}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbP}{\mathbb{P}}
+\newcommand{\bbE}{\mathbb{E}}
+\newcommand{\bbV}{\mathbb{V}}
+\renewcommand{\mod}{\text{mod }}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+
+\definecolor{g}{RGB}{30, 100, 200}
+\definecolor{f}{RGB}{200, 30, 100}
+\definecolor{t}{RGB}{50, 150, 0}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem1*}{Theorem 1}
+\newtheorem*{theorem2*}{Theorem 2}
+\newtheorem*{theorem3*}{Theorem 3}
+\newtheorem*{theorem5*}{Theorem 5}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\onehalfspacing
+
+\newtcolorbox{qbox}{
+    colback=gray!10, % Sets the background color to a light gray
+    colframe=gray!80, % Sets the frame/border color to a darker gray
+    boxrule=0.7pt, % Sets the thickness of the box border
+    arc=0mm, % Rounds the corners of the box
+    boxsep=2pt, % Sets the distance between the border and the inner content
+    left=5mm, % Adds extra space to the left side
+    right=5mm, % Adds extra space to the right side
+}
+
+\newtcolorbox{abox}{
+    colback=gray!0, % Sets the background color to a light gray
+    colframe=gray!80, % Sets the frame/border color to a darker gray
+    boxrule=0.7pt, % Sets the thickness of the box border
+    arc=0mm, % Rounds the corners of the box
+    boxsep=2pt, % Sets the distance between the border and the inner content
+    left=5mm, % Adds extra space to the left side
+    right=5mm, % Adds extra space to the right side
+    breakable=true,
+}
