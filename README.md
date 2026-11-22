@@ -25,11 +25,11 @@ frontmatter/
   abstract.tex        Abstract
 
 sections/             Disambiguation of the paper into sections (\input from main.tex)
-  introduction.tex
-  model.tex
-  analysis.tex
-  conclusion.tex
-  appendix.tex
+  introduction.tex        (stub; \input commented out in main.tex)
+  prior-literature.tex    (stub; \input commented out in main.tex)
+  preliminary-model.tex
+  solving-the-model.tex
+  model-extensions.tex
 
 bib/
   references.bib      BibTeX bibliography

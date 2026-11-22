@@ -1,0 +1,48 @@
+\section{Model Extensions}
+\label{sec:model-extensions}
+
+\noindent We first talk about two forms of uncertainty that exist in the problem.
+
+\subsection{Sender Uncertainty in $g$}
+
+Suppose Receiver is allowed to announce a distribution $\nu$ over tests $g$. Then Sender does not know $g$ exactly but he knows its distribution. But note that his objective is completely linear in $g$, meaning this is equivalent to optimizing as a response to the deterministic test $\bbE_{\nu}[g]$.
+
+Given this response, we backward induct to write the Receiver's problem as $$\max_{\nu} \ \bbE\left[\pi_0+W\sum_k r_k\bbE_\nu[g_k]-W^2\sum_k\dfrac{s_k+1}{s_k}\bbE_\nu[g_k] \cdot g_k\right].$$ This expression makes it clear that $\bbE_\nu[x_k]$ actually fixes Receiver's payoff as well, at $$\pi_0+W\sum_k r_k\bbE_\nu[g_k]-W^2\sum_k\dfrac{s_k+1}{s_k}\bbE_\nu[g_k]^2.$$ Therefore, any measure $\nu$ whose mean is the optimal $g$ is equally beneficial for Receiver.
+
+\subsection{Receiver Uncertainty in $s$}
+
+Suppose Receiver doesn't know $s=(s_1,\dots,s_D)$ exactly but she believes it follows $s \sim \mu$ on $(0,1]^D$. Rewriting Receiver's payoff as dependent on $g$ and $s$, we note that $\pi_R(g;s)$ is concave in $s$. Consequently, by Jensen's inequality, \begin{align*}\max_g \ \bbE_\mu[\pi_R(g;s)]&= \bbE_\mu[\pi_R(g^*,s)] \\ &\leq \pi_R(g^*,\bbE_\mu[s])\leq \max_g \ \pi_R(g,\bbE_\mu[s]).\end{align*} We generalize this finding to broader notions of informativeness that Receiver has about Sender's gaming technology:
+
+\begin{proposition}
+    Let $V_R(\mu) \equiv \max_g \bbE_{\mu}[\pi_R(g;s)]$. If $\mu_1$ second order stochastically dominates $\mu_2$, $V_R(\mu_1) \geq V_R(\mu_2)$.
+\end{proposition}
+
+\subsection{Two Senders}
+
+Now suppose there are two Senders $i=1,2$, and Receiver will compensate at most Sender. She will administer test $g$, and observe independent binary signals $H_i \sim \text{Bernoulli}(\<g,a^i\>)$. If $H_1>H_2$, she will compensate Sender $1$ and vice versa; if $H_1=H_2=1$, she will compensate each Sender with equal probability; if $H_1=H_2=0$, she will compensate neither Sender.
+
+Given $g$ and $W$, Senders' optimal skill exhibition is now a strategic game, with Sender $i$'s payoff given by $$u_i(a_t^i,a_f^i; a_t^{-i}, a_f^{-i})=W \cdot \left[\bbP(H_i>H_{-i})+\tfrac 1 2\bbP(H_i=H_{-i}=1)\right]-C(a_t^i,a_f^i).$$ Beacuse Senders' signals are independent, \begin{align*}u_i&=W \cdot [\bbP(H_i=1)\bbP(H_{-i}=0)+\tfrac 1 2 \bbP(H_i=1)\bbP(H_{-i}=1)] - C(a_t^i,a_f^i)\\
+&=W \cdot \<g,a_t^i+a_f^i\>(1-\<g,a_t^{-i}+a_f^{-i}\>+\tfrac 1 2\<g,a_t^{-i}+a_f^{-i}\>)-C(a_t^i,a_f^i)\\
+&=W \cdot \<g,a_{t}^i+a_f^i\>(1-\tfrac 1 2\<g,a_t^{-i}+a_f^{-i}\>)-C(a_t^i,a_f^i).\end{align*}
+
+\begin{theorem}
+    Suppose $s$ is common knowledge and common to both Senders, and $$\sum_{k=1}^D Wg_k^2 \cdot \dfrac{s_k+1}{s_k}<2.$$ Then the Senders' game has a unique Nash equilibrium.
+\end{theorem}
+\begin{proof}
+    In any Nash equilibrium both Senders must be best responding. For Sender 1, for example, given Sender 2's exhibited skills, $$\nabla u_1(a_t^1,a_f^1; a_t^2,a_f^2)=0.$$ In particular, for each skill $k$, $$W(1-\tfrac 1 2\<g,a_t^2+a_f^2\>)g_k=a_{t,k}^1, \quad \dfrac W{s_k}(1-\tfrac 1 2\<g,a_t^2+a_f^2\>)g_k=a_{f,k}^1.$$ This shows that the best response functions are continuous, singleton-valued, and symmetric; write $B(\cdot,\cdot)$ as the best-response function.
+
+    The functional form of the BRFs shows that they are linear in the inputs; so $B(\cdot,\cdot)$ can just be represented by an affine transformation. More precisely, writing $A^i=(a_t^i,a_f^i) \in \bbR^{2D}_+$, $$B(A^i)=b+B_LA^i$$ for a matrix $B_L$.
+
+    Letting $m=(Wg_1, Wg_2,\dots,Wg_D,\tfrac W{s_1}g_1,\dots,\tfrac W{s_D}g_D)'$ and $\ell=(g_1,\dots,g_D,g_1,\dots,g_D)'$, we notice that $$b=m, \quad B_L= -\dfrac 1 2 m\ell^T.$$ Because $B_L$ is an outer product, its column space is spanned by $m$ so it has rank one, and in particular at most one non-zero eigenvalue corresponding to $m$: $$B_Lm=-\dfrac 1 2 m\ell^Tm=-\dfrac{1}2\ell^Tm \cdot m,$$ so the eigenvalue is $-\tfrac 1 2 \ell^Tm$. Expanding out gives $$-\dfrac 1 2 \ell^Tm=-\dfrac 1 2 \sum_{k=1}^D W g_k^2 \cdot \dfrac{s_k+1}{s_k}.$$ Whenever the sum is less than $2$, the eigenvalue is in $(-1,1)$. Since it is the only non-zero eigenvalue, $B_L$ is a contraction, implying that $B$ is a contraction mapping.
+
+    Consequently, $B$ has a unique fixed point that serves as the unique Nash equilibrium.
+\end{proof}
+
+\noindent The bound provided in the theorem statement is not arbitrary; it is equivalent to the optimal bundle resulting in a probability $\<g,a_t^i+a_f^i\> \leq 1$.
+
+We should note firstly that this Nash equilibrium is symmetric, and can be explicitly calculated: $$B(A)=A \iff m+B_LA=A.$$ Because $B_L$ maps into the span of $m$, we must have that $A=\a m$. This implies that $$m+\a B_Lm=\a m \iff \a m=m-\dfrac 1 2 \a m\ell^Tm \implies \a = 1-\dfrac 1 2 \a\ell^Tm.$$ Isolating $\a$ gives $$\a=\dfrac 1{1+\tfrac 1 2 \ell^T m}=\dfrac{2}{2+\sum_{k=1}^D Wg_k^2 \cdot \tfrac{s_k+1}{s_k}}.$$ Therefore, the common Nash equilibrium strategy is $$(a_t^i,a_f^i)=\dfrac{2}{2+\sum_{k=1}^D Wg_k^2 \cdot \tfrac{s_k+1}{s_k}} (Wg_1,\dots,Wg_D,\tfrac W{s_1}g_1,\dots,\tfrac W{s_D}g_D).$$ There are several notable comparisons between this and the original model:
+\begin{itemize}[nosep]
+    \item $a_{t}^i \propto g$ and $a_{t,k}^i =s_k a^i_{f,k}\leq a_{f,k}^i$.
+    \item $a_t^i$ and $a_f^i$ are parallel if and only if all skills are equally expensive to game.
+    \item $(a_t^i,a_f^i)=\tfrac{2}{2+L}(a_t^*,a_f^*)\leq (a_t^*,a_f^*)$ component-wise, where $(a_t^*,a_f^*)$ is the optimal skill in the One-Sender case.
+\end{itemize}

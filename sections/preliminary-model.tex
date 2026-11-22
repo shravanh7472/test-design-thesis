@@ -1,0 +1,40 @@
+\section{Preliminary Model}
+\label{sec:preliminary-model}
+
+In this section, I introduce the economic model that formalizes the notion of testing under adverse incentives.
+
+For now, suppose there is a Sender (he) and a Receiver (she). Broadly speaking, the Sender is the agent being evaluated who has the ability to game; the Receiver is the agent who wishes to evaluate and reward Sender's skill.
+
+
+There are $D \geq 2$ axes representing independent dimensions of ability. A (composite) `skill' is a vector $a \in \bbR ^D_+$.\\
+
+\noindent From a skill $a$, Receiver obtains payoff $\pi_R \equiv \pi_0+\<r,a\>$, where $\<\cdot, \cdot\>$ is the standard Euclidean inner product and $r \in \bbR^D_+$.
+
+Receiver chooses a `test' $g \in S^{D-1}_+$, with a resultant test score of is $\<g,a\>$. Receiver then observes a random binary score $H \sim \text{Bernoulli}(\<g,a\>)$. She \textbf{only observes $H$}, not $a$. If $H = 1$, she compensates Sender with $W$ dollars for a good performance; otherwise, she does not pay Sender. So, her optimization problem is $$\max_g \ \<r,a(g)\> - \bbE[W \cdot H(g)]$$ for a particular $a(g)$ that depends on Sender's optimization problem.\\
+
+\noindent
+Sender's goal is to exhibit high skill level $a \in \bbR^D_+$ to Receiver. He observes $g$ and $W$, and he obtains linear utility from his expected compensation $\bbE[W \cdot H]$, where $H \sim \text{Bernoulli}(\<g,a\>)$. He can exhibit this skill level in two ways:
+\begin{itemize}[nosep]
+    \item through \textbf{true improvements} $a_t \in \bbR ^D_+$, and
+    \item through \textbf{fake manipulations} $a_f \in \bbR^D_+$ of her skill.
+\end{itemize}
+
+Then, his skill level is $a=a_t+a_f$. He faces a quadratic cost $$C(a_t,a_f)=\dfrac 1 2\left(a_{t,1}^2+\dots+a_{t,D}^2+s_1a_{f,1}^2+\dots +s_Da_{f,D}^2\right),$$ where $s_1,s_2,\dots,s_D$ represent the relative cheapness of faking. We will often assume $s_k \leq 1$ for all $k$, which would make gaming cheaper on the margin. His optimization problem is $$\max_{a_t,a_f} \ \bbE[W \cdot H]-C(a_t,a_f).$$
+
+\noindent To sum up, the chronology of the game is as follows.
+Before the game starts:
+\begin{itemize}[nosep]
+    \item Receiver has a payoff $\pi_R(\cdot)=\pi_0+\<r,\cdot\>$, which is parameterized by her `preferred direction' $r$.
+    \item Sender has a cost function $C(\cdot,\cdot)$, which is parameterized by $s_1,s_2,\dots,s_D$.
+\end{itemize}
+
+\noindent The game progresses as follows:
+\begin{itemize}[nosep]
+    \item Receiver announces the test $g$ and she \textit{must} commit to it.
+    \item Sender observes $g$ and plays his optimal $(a_t^*,a_f^*)$.
+    \item Receiver observes the realized value of $H \sim \text{Bernoulli}(\<g,a^*_t+a_f^*\>)$.
+    \begin{itemize}[nosep]
+        \item Receiver only cares about Sender's true skill, so her payoff is actually $\pi_R(a_t^*)=\pi_0+\<r,a_t^*\>$.
+    \end{itemize}
+    \item Sender obtains his compensation from Receiver if $H=1$, and nothing if $H=0$.
+\end{itemize}

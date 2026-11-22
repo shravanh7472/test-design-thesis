@@ -1,0 +1,161 @@
+\section{Solving the Model}
+\label{sec:solving-the-model}
+
+We begin by backward induction and solve Sender's problem for a given choice of $g$: $$\max_{a_t,a_f} \ \bbE[W \cdot H]-C(a_t,a_f),$$ with FOCs for skills $k=1,2,\dots,D$: $$[a_{f,k}]:a_{f,k}^*=\dfrac{Wg_k}{s_k}, \quad [a_{t,k}]:a_{t,k}^*=Wg_k.$$ Three facts follow immediately from this result:
+\begin{itemize}[nosep]
+    \item $a_{t,k}^* =s_k \cdot a_{f,k}^* \leq a_{f,k}^*$.
+    \item $a_t^* \parallel g$.
+    \item $a_t^*$ and $a_f^*$ will \textit{not} be parallel unless all skills are equally expensive to game. $a_f^*$ will tend to point towards cheaper skills (i.e. it will be inflated relative to $a_t^*$ in the directions where $s_k$ is lower).\\
+\end{itemize}
+
+\noindent Geometrically, if $g=(\tfrac{\sqrt 2}2,\tfrac{\sqrt 2}2)$, $s=(1, \tfrac 1 2)$, and $W=2$, Sender's optimal responses look like this:
+
+\begin{center}
+\begin{tikzpicture}[scale=2.5, >=stealth]
+% g = (cos 45, sin 45), s = (1, 0.5), W = 2
+    \pgfmathsetmacro{\gone}{cos(45)}
+    \pgfmathsetmacro{\gtwo}{sin(45)}
+    \pgfmathsetmacro{\sone}{1}
+    \pgfmathsetmacro{\stwo}{0.5}
+    \pgfmathsetmacro{\W}{2}
+
+    % a_t^* = W g        (parallel to g)
+    \pgfmathsetmacro{\atone}{\W*\gone}
+    \pgfmathsetmacro{\attwo}{\W*\gtwo}
+    % a_f^* = W S^{-1} g  (tilts toward cheap-to-game axis)
+    \pgfmathsetmacro{\afone}{\W*\gone/\sone}
+    \pgfmathsetmacro{\aftwo}{\W*\gtwo/\stwo}
+
+    % axes (positive quadrant only)
+    \draw[->] (0,0) -- (3.2,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,3.2) node[above] {$y$};
+
+    % g: unit vector at 45 degrees
+    \draw[dotted, very thick, g] (0,0) -- (45:4) node[below right] {$\parallel g$};
+
+    % a_f^*: tilts toward the cheaper-to-game axis (y)
+    \draw[->, very thick, f] (0,0) -- (\afone,\aftwo)
+      node[above right] {$a_f^*$};
+
+    % a_t^* = W g : lies on the test line
+    \draw[->, very thick, t] (0,0) -- (\atone,\attwo)
+      node[below right] {$a_t^*$};
+
+\end{tikzpicture}
+\end{center}
+
+\noindent
+Substituting Sender's optimum into Receiver's problem gives $$\max_{g} \ \pi_0+W\sum_k r_kg_k-W^2\sum_k\dfrac{s_k+1}{s_k}g_k^2,$$ with FOCs for $k=1,2,\dots,D$:
+$$[g_k]:Wr_k=2W^2\dfrac{s_k+1}{s_k}g_k,$$ which gives $$g_k^*=\dfrac{s_k}{2(s_k+1)W}\cdot r_k.$$ Again, unless all skills are equally expensive to game, $g^*$ is \textit{not} parallel to $r$.\\
+
+Dividing $g_k^*$ by $g_j^*$ gives $$\underbrace{\dfrac{g_k^*}{g_j^*}}_{\text{Sender's } MRS_{k,j}}=\underbrace{\dfrac{s_k/(s_k+1)}{s_j/(s_j+1)}}_{\text{share of true improvement along axis } k \text{ vs } j} \times\underbrace{\dfrac{r_k}{r_j}}_{\text{Receiver's } MRS_{k,j}}$$ There are two interpretations of this formula:
+\begin{itemize}[nosep]
+    \item Receiver should equate Sender's MRS to her MRS, scaled by the share of true improvement along each axis.
+    \item Receiver should choose the test that equates Sender's MRS to true relative cost of true improvement, scaled by the weights she places on those axes (this is like an MRS = Price condition).\\
+\end{itemize}
+
+\noindent Geometrically, when $a_t^*=Wg$, setting $g\parallel r$ perfectly aligns true skill with $r$. But fake manipulation points towards the more gameable axis so the compensation for fake skill rises:
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=1.5, >=stealth]
+      \pgfmathsetmacro{\rone}{cos(45)} \pgfmathsetmacro{\rtwo}{sin(45)}
+      \pgfmathsetmacro{\gone}{cos(45)} \pgfmathsetmacro{\gtwo}{sin(45)}
+      \pgfmathsetmacro{\sone}{1} \pgfmathsetmacro{\stwo}{0.5}
+      \pgfmathsetmacro{\W}{2}
+      % a_t = W g  (parallel to g = r)
+      \pgfmathsetmacro{\atone}{\W*\gone} \pgfmathsetmacro{\attwo}{\W*\gtwo}
+      % a_f = W S^{-1} g  (tilts toward cheap-to-game axis)
+      \pgfmathsetmacro{\afone}{\W*\gone/\sone} \pgfmathsetmacro{\aftwo}{\W*\gtwo/\stwo}
+
+      \draw[->] (0,0) -- (3.2,0) node[right] {$x$};
+      \draw[->] (0,0) -- (0,3.2) node[above] {$y$};
+      \draw[dotted, very thick, g] (0,0) -- (3.2*\gone,3.2*\gtwo) node[above] {$g\parallel r$};
+      \draw[->, very thick, f] (0,0) -- (\afone,\aftwo) node[above right] {$a_f^*$};
+      \draw[->, very thick, t] (0,0) -- (\atone,\attwo) node[below right] {$a_t^*\!\parallel\! r$};
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=1.5, >=stealth]
+      \pgfmathsetmacro{\hA}{1/10*19.2}    % 1.92
+      \pgfmathsetmacro{\hopt}{5/48*19.2}  % 2.00
+      \draw[->] (0,0) -- (0,2.4) node[above] {\footnotesize $\pi_R-\mathbb{E}[WH]$};
+      \draw[->] (0,0) -- (3,0);
+      \draw[dashed, t] (0,\hopt) -- (3,\hopt) node[right, black] {\footnotesize best};
+      \filldraw[f] (0.3,0) rectangle (0.9,\hA);
+      \node[below] at (0.6,0) {\scriptsize $g\!\parallel\!r$};
+      \node[above] at (0.6,\hA) {\scriptsize $\tfrac{1}{10}$};
+    \end{tikzpicture}
+  \end{minipage}
+
+  \caption{The true skill is aligned, but Receiver pays Sender much more for fake skill.}
+  \label{fig:gparallelr}
+\end{figure}
+
+Receiver's optimal test is what might be called `strategic misalignment': she should tilt the test towards the harder-to-game axis. While this tilts $a_t^*$ away from $r$, it reduces the cost she wastes on gamed skill $a_f^*$: \newpage
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}{0.46\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=1.5, >=stealth]
+      \pgfmathsetmacro{\rone}{cos(45)} \pgfmathsetmacro{\rtwo}{sin(45)}
+      \pgfmathsetmacro{\gone}{3/sqrt(13)} \pgfmathsetmacro{\gtwo}{2/sqrt(13)}
+      \pgfmathsetmacro{\sone}{1} \pgfmathsetmacro{\stwo}{0.5}
+      \pgfmathsetmacro{\W}{2}
+      \pgfmathsetmacro{\atone}{\W*\gone} \pgfmathsetmacro{\attwo}{\W*\gtwo}
+      \pgfmathsetmacro{\afone}{\W*\gone/\sone} \pgfmathsetmacro{\aftwo}{\W*\gtwo/\stwo}
+      \pgfmathsetmacro{\projt}{\atone*\rone + \attwo*\rtwo}
+      \pgfmathsetmacro{\footone}{\projt*\rone} \pgfmathsetmacro{\foottwo}{\projt*\rtwo}
+      \pgfmathsetmacro{\m}{0.1}
+
+      \draw[->] (0,0) -- (3.2,0) node[right] {$x$};
+      \draw[->] (0,0) -- (0,3.2) node[above] {$y$};
+      \draw[dotted, very thick] (0,0) -- (2.6*\rone,2.6*\rtwo) node[above right] {$r$};
+      \draw[dash dot, very thick, g] (0,0) -- (2.6*\gone,2.6*\gtwo) node[right] {$g^*$};
+      \draw[->, very thick, f] (0,0) -- (\afone,\aftwo) node[above] {$a_f^*$};
+      \draw[->, very thick, t] (0,0) -- (\atone,\attwo) node[below right] {$a_t^*$};
+      \draw[dotted, thick] (\atone,\attwo) -- (\footone,\foottwo);
+      \draw[thin]
+        (\footone-\m*\rone, \foottwo-\m*\rtwo) --
+        (\footone-\m*\rone+\m*\rtwo, \foottwo-\m*\rtwo-\m*\rone) --
+        (\footone+\m*\rtwo, \foottwo-\m*\rone);
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.46\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=1.5, >=stealth]
+      \pgfmathsetmacro{\hA}{1/10*19.2}    % 1.92  (g || r)
+      \pgfmathsetmacro{\hC}{5/48*19.2}    % 2.00  (g*)
+      \pgfmathsetmacro{\hopt}{5/48*19.2}
+      \draw[->] (0,0) -- (0,2.4) node[above] {\footnotesize $\pi_R-\mathbb{E}[WH]$};
+      \draw[->] (0,0) -- (3,0);
+      \draw[dashed, t] (0,\hopt) -- (3,\hopt);
+      \filldraw[f!40] (0.5,0) rectangle (1.1,\hA);
+      \filldraw[t] (1.6,0) rectangle (2.2,\hC);
+      \node[below] at (0.8,0) {\scriptsize $g\!\parallel\!r$};
+      \node[below] at (1.9,0) {\scriptsize $g^*$};
+      \node[above] at (0.8,\hA) {\scriptsize $\tfrac{1}{10}$};
+      \node[above] at (1.9,\hC) {\scriptsize $\tfrac{5}{48}$};
+    \end{tikzpicture}
+  \end{minipage}
+
+  \caption{Tilting $g$ towards the harder-to-game skill reduces total gaming, offsetting the loss from misalignment.}
+  \label{fig:gstar}
+\end{figure}
+
+\noindent
+We summarize with two propositions, both of which are immediate consequences of the math in this section.
+
+\begin{proposition}
+    If faking is not possible (i.e., as $s_k\to \infty$ for all $k$), Receiver's optimal test is $g \parallel r$. That is, misalignment is only beneficial in the presence of faking.
+\end{proposition}
+
+\begin{proposition}
+    Strategic misalignment benefits Receiver if and only if there is heterogeneity in $s_k$.
+\end{proposition}
