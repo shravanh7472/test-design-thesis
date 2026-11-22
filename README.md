@@ -12,33 +12,33 @@ latexmk -pvc main.tex     # continuous preview: rebuilds on save
 latexmk -c                # clean auxiliary files
 ```
 
-The `.latexmkrc` routes all the build artifacts (`.aux`, `.log`, and `.fls`, for example) and the output PDF to `output/`.
+The output PDF is saved to `output/` (git-ignored).
 
 ## Structure
 
 ```
 main.tex              Main document
-preamble.tex          Packages, macros & theorem environments
-.latexmkrc            Config (artifacts -> output/)
+preamble.tex          Packages, macros and theorem environments
+.latexmkrc            Config
 
 frontmatter/
   abstract.tex        Abstract
 
-sections/             Disambiguation of the paper into sections (\input from main.tex)
-  introduction.tex        (stub; \input commented out in main.tex)
-  prior-literature.tex    (stub; \input commented out in main.tex)
+sections/
+  introduction.tex        (currently inactive)
+  prior-literature.tex    (currently inactive)
   preliminary-model.tex
   solving-the-model.tex
   model-extensions.tex
 
 bib/
-  references.bib      BibTeX bibliography
+  references.bib     BibTeX bibliography
 
-figures/             Figures (PDF/PNG); \graphicspath points here
-tables/              Standalone table .tex fragments
-slides/              Associated slide decks
+figures/             Any figures (including TiKz). Called by \graphicspath
+tables/              .tex code for tables
+slides/              Slide decks
 output/              Generated PDF and aux files (git-ignored)
 ```
 
-Add a new section by creating `sections/<name>.tex` and adding a matching
+New sections are added by creating `sections/<name>.tex` and adding a matching
 `\input{sections/<name>}` line in `main.tex`.
